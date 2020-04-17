@@ -2,6 +2,7 @@
   margin: 45px 0 60px;
   color: #FFFFFF;
   background-color: #000000;
+  font-family: 'Inter', Arial, sans-serif;
 }
 
 @media (max-width : 425px) {

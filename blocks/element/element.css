@@ -1,0 +1,36 @@
+@import url("__title/element__title.css");
+@import url("__title-container/element__title-container.css");
+@import url("__like/element__like.css");
+@import url("_yosemite/element__yosemite.css");
+@import url("_lake-louise/element_lake-louise.css");
+@import url("_bald-mountains/element_bald-mountains.css");
+@import url("_latemar/element_latemar.css");
+@import url("_vanois-nationalpark/element_vanois-nationalpark.css");
+@import url("_lago-di-braies/element_lago-di-braises.css");
+
+.element {
+  width: 282px;
+  height: 361px;
+  background-repeat: no-repeat;
+  background-position: 0 0;
+  background-color: #FFFFFF;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: 0 18px 20px 0;
+}
+
+.element:nth-child(3n) {
+  margin-right: 0;
+}
+
+@media (max-width : 425px) {
+  .element {
+    margin: 0 19px 20px;
+  }
+
+  .element:nth-child(3n) {
+    margin: 0 19px 20px;
+  }
+}
