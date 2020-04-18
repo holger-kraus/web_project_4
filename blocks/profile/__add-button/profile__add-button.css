@@ -4,7 +4,10 @@
   width: 150px;
   height: 50px;
   background: url("../../../images/add-button.svg") no-repeat center;
+}
 
+.profile__add-button:hover {
+  opacity: .6;
 }
 
 @media (max-width : 425px) {

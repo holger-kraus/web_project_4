@@ -4,3 +4,7 @@
   background: url("../../../images/edit-button.png") no-repeat center;
   border: 1px solid #FFFFFF;
 }
+
+.profile__edit-button:hover {
+  opacity: .6;
+}

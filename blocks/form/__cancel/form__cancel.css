@@ -7,3 +7,7 @@
   height: 58px;
   background: url("../../../images/close-icon.svg");
 }
+
+.form__cancel:hover {
+  opacity: .6;
+}
