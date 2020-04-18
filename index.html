@@ -7,14 +7,16 @@
   <link rel="stylesheet" href="pages/index.css">
 </head>
 <body class="page">
-<section class="form">
-  <form action="#" class="form__container">
+<section class="popup">
+<div class="popup__container">
+  <form action="#" class="form">
     <h2 class="form__title">Edit profile</h2>
-    <input class="form__field form__field_name" value="Jacques Cousteau">
-    <input class="form__field form__field_profession" value="Explorer">
+    <input class="form__field form__field_name">
+    <input class="form__field form__field_about-me">
     <button class="form__save">Save</button>
   </form>
   <button class="form__cancel"></button>
+</div>
 </section>
 <header class="header">
   <img class="header__logo" src="images/logo-white.svg">
@@ -25,7 +27,7 @@
     <div class="profile__info">
       <h1 class="profile__name">Jacques Cousteau</h1>
       <button class="profile__edit-button"></button>
-      <p class="profile__profession">Explorer</p>
+      <p class="profile__about-me">Explorer</p>
     </div>
     <button class="profile__add-button"></button>
   </section>
@@ -73,5 +75,6 @@
 <footer class="footer">
   <p class="footer__copyright">© 2020 Holger Kraus</p>
 </footer>
+<script src="javascript/script.js"></script>
 </body>
 </html>
