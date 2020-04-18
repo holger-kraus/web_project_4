@@ -1,0 +1,11 @@
+.form__save {
+  margin: 48px 0 0;
+  padding: 0;
+  width: 358px;
+  height: 50px;
+  font-size: 18px;
+  line-height: 22px;
+  color: #FFFFFF;
+  border: 0;
+  background-color: #000000;
+}

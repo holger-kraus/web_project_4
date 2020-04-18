@@ -1,0 +1,9 @@
+.form__cancel {
+  position: absolute;
+  border: 0;
+  top: -45px;
+  right: -45px;
+  width: 58px;
+  height: 58px;
+  background: url("../../../images/close-icon.svg");
+}

@@ -1,0 +1,20 @@
+@import url("__title/form__title.css");
+@import url("__container/form__container.css");
+@import url("__field/form__field.css");
+@import url("__label/form__label.css");
+@import url("__field/_name/form__field_name.css");
+@import url("__field/_profession/form__field_profession.css");
+@import url("__save/form__save.css");
+@import url("__cancel/form__cancel.css");
+
+.form {
+  position: fixed;
+  width: 430px;
+  height: 330px;
+  top: 180px;
+  background: #FFFFFF;
+  box-shadow: 0 0 25px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  left: 50%;
+  transform: translate(-50%, 0);
+}

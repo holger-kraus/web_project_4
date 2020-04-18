@@ -1,65 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jacques Cousteau</title>
-    <link rel="stylesheet" href="pages/index.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Jacques Cousteau</title>
+  <link rel="stylesheet" href="pages/index.css">
 </head>
 <body class="page">
-    <header class="header">
-        <img class="header__logo" src="images/logo-white.svg">
-    </header>
-    <main class="content">
-      <section class="profile">
-        <img class="profile__avatar" src="images/portrait.jpg">
-        <div class="profile__info">
-          <h1 class="profile__name">Jacques Cousteau</h1>
-          <button class="profile__edit-button"></button>
-          <p class="profile__profession">Explorer</p>
+<section class="form">
+  <form action="#" class="form__container">
+    <h2 class="form__title">Edit profile</h2>
+    <input class="form__field form__field_name" value="Jacques Cousteau">
+    <input class="form__field form__field_profession" value="Explorer">
+    <button class="form__save">Save</button>
+  </form>
+  <button class="form__cancel"></button>
+</section>
+<header class="header">
+  <img class="header__logo" src="images/logo-white.svg">
+</header>
+<main class="content">
+  <section class="profile">
+    <img class="profile__avatar" src="images/portrait.jpg">
+    <div class="profile__info">
+      <h1 class="profile__name">Jacques Cousteau</h1>
+      <button class="profile__edit-button"></button>
+      <p class="profile__profession">Explorer</p>
+    </div>
+    <button class="profile__add-button"></button>
+  </section>
+  <section class="elements">
+    <ul class="elements__list">
+      <li class="element element_yosemite">
+        <div class="element__title-container">
+          <h2 class="element__title">Yosemite Valley</h2>
+          <img class="" src="images/like.svg">
         </div>
-        <button class="profile__add-button"></button>
-      </section>
-      <section class="elements">
-        <ul class="elements__list">
-          <li class="element element_yosemite">
-            <div class="element__title-container">
-              <h2 class="element__title">Yosemite Valley</h2>
-              <img class="" src="images/like.svg">
-            </div>
-          </li>
-          <li class="element element_lake-louise">
-            <div class="element__title-container">
-              <h2 class="element__title">Lake Louise</h2>
-              <img class="" src="images/like.svg">
-            </div>
-          </li>
-          <li class="element element_bald-mountains">
-            <div class="element__title-container">
-              <h2 class="element__title">Bald Mountains</h2>
-              <img class="" src="images/like.svg">
-            </div>
-          </li>
-          <li class="element element_latemar">
-            <div class="element__title-container">
-              <h2 class="element__title">Latemar</h2>
-              <img class="" src="images/like.svg">
-            </div>
-          </li>
-          <li class="element element_vanois-nationalpark">
-            <div class="element__title-container">
-              <h2 class="element__title">Vanois National...</h2>
-              <img class="" src="images/like.svg">
-            </div>
-          </li>
-          <li class="element element_lago-di-braises">
-            <div class="element__title-container">
-              <h2 class="element__title">Lago di Braies</h2>
-              <img class="" src="images/like.svg">
-            </div>
-          </li>
-        </ul>
-      </section>
-    </main>
+      </li>
+      <li class="element element_lake-louise">
+        <div class="element__title-container">
+          <h2 class="element__title">Lake Louise</h2>
+          <img class="" src="images/like.svg">
+        </div>
+      </li>
+      <li class="element element_bald-mountains">
+        <div class="element__title-container">
+          <h2 class="element__title">Bald Mountains</h2>
+          <img class="" src="images/like.svg">
+        </div>
+      </li>
+      <li class="element element_latemar">
+        <div class="element__title-container">
+          <h2 class="element__title">Latemar</h2>
+          <img class="" src="images/like.svg">
+        </div>
+      </li>
+      <li class="element element_vanois-nationalpark">
+        <div class="element__title-container">
+          <h2 class="element__title">Vanois National...</h2>
+          <img class="" src="images/like.svg">
+        </div>
+      </li>
+      <li class="element element_lago-di-braises">
+        <div class="element__title-container">
+          <h2 class="element__title">Lago di Braies</h2>
+          <img class="" src="images/like.svg">
+        </div>
+      </li>
+    </ul>
+  </section>
+</main>
+<footer class="footer">
+  <p class="footer__copyright">© 2020 Holger Kraus</p>
+</footer>
 </body>
 </html>
