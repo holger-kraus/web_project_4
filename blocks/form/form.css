@@ -1,7 +1,5 @@
 @import url("__title/form__title.css");
-@import url("__container/form__container.css");
 @import url("__field/form__field.css");
-@import url("__label/form__label.css");
 @import url("__field/_name/form__field_name.css");
 @import url("__field/_about-me/form__field_about-me.css");
 @import url("__save/form__save.css");

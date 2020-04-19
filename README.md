@@ -1,16 +1,48 @@
-# Project 4: Around The U.S.
+# Across the U.S.
 
-### Overview
+## Web Development course at Yandex Practicum
+I am participating in an excellent web development course at [Yandex Practicum](https://practicum.yandex.com/) right now.
+You get a very good introduction into many web development topics on their learning platform. After mastering the
+according lessons, you have to proof your newly acquired skills in your own projects.
 
-* Figma
-* Images
+## My third project
+This is my third project that I have implemented as part of the course. This time we started using javascript in order to
+add some functionality to the website. Luckily we just had to optimize the layout for two different screen sizes and not
+for six like in the assigment before. It was the first time we used HTML, CSS and Javascript together in a project.
 
-**Figma**
+### Functionality
 
-* [Link to the project in Figma](https://www.figma.com/file/mUgu8OSHWE0M6p6vfwmdu9/Sprint-4-Around-The-U.S.-desktop-mobile?node-id=0%3A1)
+The web site is a profile page. It contains a set of photographies that can be liked by users. The page also contains
+an edit functionality where the user can change the name and the about me information. The edit form pops up in a modal
+dialogue.
 
-**Images**
+### Technologies
 
-The way you'll do this at work is by exporting images directly from Figma — we recommend doing that to practice more. Don't forget to optimize them [here](https://tinypng.com/), so your project loads faster. 
+In detail the following technologies and methods have been used:
+* Semantic HTML like
+    * sections
+    * header
+    * footer
+    * main area
+    * headlines
+    * paragraphs
+    * lists
+    * links
+* BEM Methodology (Block, Element, Modifier)
+    * How to organize CSS сlasses
+    * How to organize CSS files
+* CSS techniques like
+    * box model
+    * flexbox
+    * positioning
+    * media queries
+* Javascript
+    * working with the DOM
+    * reading and updating values in the DOM
 
-Have fun with JavaScript!
+### Have a look!
+
+The page is installed on Github Pages [here](https://holger-kraus.github.io/web_project_4/).
+
+
+
