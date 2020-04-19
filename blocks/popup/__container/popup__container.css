@@ -1,6 +1,6 @@
 .popup__container {
   position: absolute;
-  width: 430px;
+  width: 425px;
   height: 330px;
   top: 180px;
   background: #FFFFFF;
@@ -10,3 +10,11 @@
   transform: translate(-50%, 0);
   z-index: 1;
 }
+
+@media (max-width : 425px) {
+  .popup__container {
+    width: 250px;
+    height: 300px;
+  }
+}
+

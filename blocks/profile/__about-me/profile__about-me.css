@@ -6,7 +6,10 @@
   font-size: 18px;
   line-height: 22px;
   flex-basis: 100%;
-
+  max-width: 440px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @media (max-width : 425px) {

@@ -21,7 +21,7 @@
   margin: 0 18px 20px 0;
 }
 
-.element:nth-child(3n) {
+.element:nth-child(3n) {  /* Thanks for the tip, will consider grid next time */
   margin-right: 0;
 }
 

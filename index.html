@@ -7,17 +7,6 @@
   <link rel="stylesheet" href="pages/index.css">
 </head>
 <body class="page">
-<section class="popup">
-<div class="popup__container">
-  <form action="#" class="form">
-    <h2 class="form__title">Edit profile</h2>
-    <input class="form__field form__field_name">
-    <input class="form__field form__field_about-me">
-    <button type="submit" class="form__save">Save</button>
-  </form>
-  <button class="form__cancel"></button>
-</div>
-</section>
 <header class="header">
   <img class="header__logo" alt="logo" src="images/logo-white.svg">
 </header>
@@ -75,6 +64,17 @@
 <footer class="footer">
   <p class="footer__copyright">© 2020 Holger Kraus</p>
 </footer>
-<script src="javascript/script.js"></script>
+<section class="popup">
+  <div class="popup__container">
+    <form action="#" class="form">
+      <h2 class="form__title">Edit profile</h2>
+      <input type="text" name="name" class="form__field form__field_name">
+      <input type="text" name="aboutme" class="form__field form__field_about-me">
+      <button type="submit" class="form__save">Save</button>
+    </form>
+    <button class="form__cancel"></button>
+  </div>
+</section>
+<script src="scripts/script.js"></script>
 </body>
 </html>

@@ -6,10 +6,15 @@
   font-weight: 500;
   font-size: 42px;
   line-height: 56px;
+  max-width: 380px;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 @media (max-width : 425px) {
   .profile__name {
+    max-width: 200px;
     font-size: 22px;
     line-height: 56px;
   }

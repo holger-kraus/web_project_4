@@ -4,8 +4,8 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   align-items: center;
-  margin: 0 140px 0 25px;
-  width: 428px;
+  margin: 0 90px 0 25px;
+  width: 470px;
 }
 
 @media (max-width : 425px) {

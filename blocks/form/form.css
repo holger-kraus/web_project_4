@@ -10,3 +10,9 @@
   padding: 34px 36px 36px;
   flex-direction: column;
 }
+
+@media (max-width : 425px) {
+  .form {
+    padding: 18px 18px 18px;
+  }
+}
