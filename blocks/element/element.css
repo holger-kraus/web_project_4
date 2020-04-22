@@ -1,12 +1,6 @@
 @import url("__title/element__title.css");
 @import url("__title-container/element__title-container.css");
 @import url("__like/element__like.css");
-@import url("_yosemite/element__yosemite.css");
-@import url("_lake-louise/element_lake-louise.css");
-@import url("_bald-mountains/element_bald-mountains.css");
-@import url("_latemar/element_latemar.css");
-@import url("_vanois-nationalpark/element_vanois-nationalpark.css");
-@import url("_lago-di-braies/element_lago-di-braises.css");
 
 .element {
   width: 282px;
