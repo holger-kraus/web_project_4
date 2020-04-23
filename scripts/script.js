@@ -70,6 +70,11 @@ function toggleLike(event) {
   likeButton.classList.toggle("element__like_liked");
 }
 
+function removeElement(event) {
+  const removeButton = event.target;
+  removeButton.parentElement.remove();
+}
+
 function addElement(element) {
   const elementTemplate = document.querySelector("#element__template").content;
   const elementsList = document.querySelector(".elements__list");
@@ -81,6 +86,9 @@ function addElement(element) {
 
   const likeButton = elementFragment.querySelector(".element__like");
   likeButton.addEventListener("click", toggleLike);
+
+  const removeButton = elementFragment.querySelector(".element__remove");
+  removeButton.addEventListener("click", removeElement);
 
   elementsList.prepend(newElement);
 }
