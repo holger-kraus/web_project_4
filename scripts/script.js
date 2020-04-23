@@ -14,8 +14,8 @@ const profileForm = profilePopup.querySelector(".form");
 
 // overlay elements
 const placePopup = document.querySelector(".overlay");
-const placeFieldName = placePopup.querySelector(".form__field_name");
-const placeFieldAboutMe = placePopup.querySelector(".form__field_detail");
+const placeFieldTitle = placePopup.querySelector(".form__field_title");
+const placeFieldLink = placePopup.querySelector(".form__field_detail");
 const placeCancelButton = placePopup.querySelector(".form__cancel");
 const placeForm = placePopup.querySelector(".form");
 
@@ -25,6 +25,7 @@ addButton.addEventListener("click", openPlacePopup);
 profileCancelButton.addEventListener("click", closeProfilePopup);
 profileForm.addEventListener("submit", submitForm);
 placeCancelButton.addEventListener("click", closePlacePopup);
+placeForm.addEventListener("submit", submitPlaceForm);
 
 function openProfilePopup() {
   profileFieldName.value = profileName.textContent;
@@ -37,21 +38,32 @@ function closeProfilePopup() {
 }
 
 function openPlacePopup() {
+  placeFieldTitle.value = null;
+  placeFieldLink.value = null;
   placePopup.classList.add("overlay_opened");
+
 }
 
 function closePlacePopup() {
   placePopup.classList.remove("overlay_opened");
 }
 
-
 function submitForm(event) {
   event.preventDefault();
-  profileName.textContent =  profileFieldName.value;
+  profileName.textContent = profileFieldName.value;
   profileAboutMe.textContent = profileFieldAboutMe.value;
   closeProfilePopup();
 }
 
+function submitPlaceForm(event) {
+  event.preventDefault();
+  const newElement = {
+    name: placeFieldTitle.value,
+    link: placeFieldLink.value
+  }
+  addElement(newElement);
+  closePlacePopup();
+}
 
 function addElement(element) {
   const elementTemplate = document.querySelector("#element__template").content;
@@ -61,7 +73,7 @@ function addElement(element) {
 
   newElement.querySelector(".element__title").textContent = element.name;
   newElement.style.backgroundImage = "url('" + element.link + "')";
-  elementsList.append(newElement);
+  elementsList.prepend(newElement);
 }
 
 function initializeCards() {
@@ -93,7 +105,7 @@ function initializeCards() {
     }
   ];
 
-  initialCards.forEach(element => addElement(element));
+  initialCards.reverse().forEach(element => addElement(element));
 }
 
 initializeCards();
