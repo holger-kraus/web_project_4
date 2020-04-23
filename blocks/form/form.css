@@ -1,7 +1,7 @@
 @import url("__title/form__title.css");
 @import url("__field/form__field.css");
-@import url("__field/_name/form__field_name.css");
-@import url("__field/_about-me/form__field_about-me.css");
+@import url("__field/_title/form__field_title.css");
+@import url("__field/_detail/form__field_detail.css");
 @import url("__save/form__save.css");
 @import url("__cancel/form__cancel.css");
 
@@ -13,6 +13,6 @@
 
 @media (max-width : 425px) {
   .form {
-    padding: 18px 18px 18px;
+    padding: 30px 20px 30px;
   }
 }

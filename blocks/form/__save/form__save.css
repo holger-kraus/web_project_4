@@ -16,6 +16,10 @@
 
 @media (max-width : 425px) {
   .form__save {
-    width: 210px;
+    margin: 36px 0 0;
+    width: 200px;
+    height: 40px;
+    font-size: 14px;
+    line-height: 17px;
   }
 }

@@ -3,34 +3,53 @@ const profile = document.querySelector(".profile");
 const profileName = profile.querySelector(".profile__name");
 const profileAboutMe = profile.querySelector(".profile__about-me");
 const editButton = profile.querySelector(".profile__edit-button");
+const addButton = profile.querySelector(".profile__add-button");
 
 // popup elements
-const popup = document.querySelector(".popup");
-const fieldName = popup.querySelector(".form__field_name");
-const fieldAboutMe = popup.querySelector(".form__field_about-me");
-const cancelButton = popup.querySelector(".form__cancel");
-const form = popup.querySelector(".form");
+const profilePopup = document.querySelector(".popup");
+const profileFieldName = profilePopup.querySelector(".form__field_title");
+const profileFieldAboutMe = profilePopup.querySelector(".form__field_detail");
+const profileCancelButton = profilePopup.querySelector(".form__cancel");
+const profileForm = profilePopup.querySelector(".form");
+
+// overlay elements
+const placePopup = document.querySelector(".overlay");
+const placeFieldName = placePopup.querySelector(".form__field_name");
+const placeFieldAboutMe = placePopup.querySelector(".form__field_detail");
+const placeCancelButton = placePopup.querySelector(".form__cancel");
+const placeForm = placePopup.querySelector(".form");
 
 // register listeners
-editButton.addEventListener("click", openPopup);
-cancelButton.addEventListener("click", closePopup);
-form.addEventListener("submit", submitForm);
+editButton.addEventListener("click", openProfilePopup);
+addButton.addEventListener("click", openPlacePopup);
+profileCancelButton.addEventListener("click", closeProfilePopup);
+profileForm.addEventListener("submit", submitForm);
+placeCancelButton.addEventListener("click", closePlacePopup);
 
-function openPopup() {
-  fieldName.value = profileName.textContent;
-  fieldAboutMe.value = profileAboutMe.textContent;
-  popup.classList.add("popup_opened");
+function openProfilePopup() {
+  profileFieldName.value = profileName.textContent;
+  profileFieldAboutMe.value = profileAboutMe.textContent;
+  profilePopup.classList.add("popup_opened");
 }
 
-function closePopup() {
-  popup.classList.remove("popup_opened");
+function closeProfilePopup() {
+  profilePopup.classList.remove("popup_opened");
 }
+
+function openPlacePopup() {
+  placePopup.classList.add("overlay_opened");
+}
+
+function closePlacePopup() {
+  placePopup.classList.remove("overlay_opened");
+}
+
 
 function submitForm(event) {
   event.preventDefault();
-  profileName.textContent =  fieldName.value;
-  profileAboutMe.textContent = fieldAboutMe.value;
-  closePopup();
+  profileName.textContent =  profileFieldName.value;
+  profileAboutMe.textContent = profileFieldAboutMe.value;
+  closeProfilePopup();
 }
 
 

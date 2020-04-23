@@ -11,6 +11,6 @@
 
 @media (max-width : 425px) {
   .form__field {
-    width: 210px;
+    width: 200px;
   }
 }

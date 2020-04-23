@@ -33,9 +33,20 @@
   <div class="popup__container">
     <form action="#" class="form">
       <h2 class="form__title">Edit profile</h2>
-      <input type="text" name="name" class="form__field form__field_name">
-      <input type="text" name="aboutme" class="form__field form__field_about-me">
+      <input type="text" name="name" class="form__field form__field_title">
+      <input type="text" name="aboutme" class="form__field form__field_detail">
       <button type="submit" class="form__save">Save</button>
+    </form>
+    <button class="form__cancel"></button>
+  </div>
+</section>
+<section class="overlay">
+  <div class="overlay__container">
+    <form action="#" class="form">
+      <h2 class="form__title">New place</h2>
+      <input type="text" name="image-title" class="form__field form__field_title" placeholder="Title">
+      <input type="text" name="image-link" class="form__field form__field_detail" placeholder="Image Link">
+      <button type="submit" class="form__save">Create</button>
     </form>
     <button class="form__cancel"></button>
   </div>
