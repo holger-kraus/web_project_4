@@ -65,6 +65,11 @@ function submitPlaceForm(event) {
   closePlacePopup();
 }
 
+function toggleLike(event) {
+  const likeButton = event.target;
+  likeButton.classList.toggle("element__like_liked");
+}
+
 function addElement(element) {
   const elementTemplate = document.querySelector("#element__template").content;
   const elementsList = document.querySelector(".elements__list");
@@ -73,6 +78,10 @@ function addElement(element) {
 
   newElement.querySelector(".element__title").textContent = element.name;
   newElement.style.backgroundImage = "url('" + element.link + "')";
+
+  const likeButton = elementFragment.querySelector(".element__like");
+  likeButton.addEventListener("click", toggleLike);
+
   elementsList.prepend(newElement);
 }
 
