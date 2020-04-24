@@ -1,6 +1,6 @@
-@import url("__container/popup__container.css");
+@import url("__container/overlay-place__container.css");
 
-.popup {
+.overlay-place {
   display: none;
   position: fixed;
   top: 0;

@@ -1,6 +1,6 @@
-@import url("__container/overlay__container.css");
+@import url("__container/overlay-profile__container.css");
 
-.overlay {
+.overlay-profile {
   display: none;
   position: fixed;
   top: 0;

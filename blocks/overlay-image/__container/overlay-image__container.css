@@ -1,0 +1,9 @@
+.overlay-image__container {
+  position: absolute;
+  max-width: 75vw;
+  max-height: 75vh;
+  top: 90px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 1;
+}

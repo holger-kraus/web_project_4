@@ -1,4 +1,4 @@
-.popup__container {
+.overlay-profile__container {
   position: absolute;
   width: 425px;
   height: 330px;
@@ -12,7 +12,7 @@
 }
 
 @media (max-width : 425px) {
-  .popup__container {
+  .overlay-profile__container {
     width: 240px;
     height: 270px;
   }

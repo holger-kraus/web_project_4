@@ -8,7 +8,11 @@
 @import url("../blocks/element/__like/_liked/element__like_liked.css");
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/form/form.css");
-@import url("../blocks/popup/popup.css");
-@import url("../blocks/popup/_opened/popup_opened.css");
-@import url("../blocks/overlay/overlay.css");
-@import url("../blocks/overlay/_opened/overlay_opened.css");
+@import url("../blocks/overlay-profile/overlay-profile.css");
+@import url("../blocks/overlay-profile/_opened/overlay-profile_opened.css");
+@import url("../blocks/overlay-place/overlay-place.css");
+@import url("../blocks/overlay-place/_opened/overlay-place_opened.css");
+@import url("../blocks/overlay-image/overlay-image.css");
+@import url("../blocks/overlay-image/_opened/overlay-image_opened.css");
+@import url("../blocks/overlay-image/__close/overlay-image_close.css");
+@import url("../blocks/image/image.css");

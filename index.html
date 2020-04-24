@@ -29,8 +29,8 @@
 <footer class="footer">
   <p class="footer__copyright">© 2020 Holger Kraus</p>
 </footer>
-<section class="popup">
-  <div class="popup__container">
+<section class="overlay-profile">
+  <div class="overlay-profile__container">
     <form action="#" class="form">
       <h2 class="form__title">Edit profile</h2>
       <input type="text" name="name" class="form__field form__field_title">
@@ -40,8 +40,8 @@
     <button class="form__cancel"></button>
   </div>
 </section>
-<section class="overlay">
-  <div class="overlay__container">
+<section class="overlay-place">
+  <div class="overlay-place__container">
     <form action="#" class="form">
       <h2 class="form__title">New place</h2>
       <input type="text" name="image-title" class="form__field form__field_title" placeholder="Title">
@@ -51,13 +51,22 @@
     <button class="form__cancel"></button>
   </div>
 </section>
+<section class="overlay-image">
+  <div class="overlay-image__container">
+    <img class="image">
+    <p class="image__title"></p>
+    <button class="overlay-image_close"></button>
+  </div>
+</section>
 <template id="element__template">
-  <li class="element" style="">
-    <button class="element__remove"></button>
-    <div class="element__title-container">
-      <h2 class="element__title"></h2>
-      <button class="element__like"></button>
-    </div>
+  <li>
+    <a class="element" href="#">
+      <button class="element__remove"></button>
+      <div class="element__title-container">
+        <h2 class="element__title"></h2>
+        <button class="element__like"></button>
+      </div>
+    </a>
   </li>
 </template>
 <script src="scripts/script.js"></script>
