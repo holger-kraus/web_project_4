@@ -14,7 +14,9 @@ for six like in the assigment before. It was the first time we used HTML, CSS an
 
 The web site is a profile page. It contains a set of photographies that can be liked by users. The page also contains
 an edit functionality where the user can change the name and the about me information. The edit form pops up in a modal
-dialogue.
+dialogue. Furthermore the user can add further images by providing their URIs. He also can remove images again from the
+photo grid. If he clicks on one of the the photo cards, the photo enlarges and is displayed as the main element on the
+screen.
 
 ### Technologies
 
