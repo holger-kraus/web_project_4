@@ -1,3 +1,31 @@
+// cards, that will be initially loaded
+const initialCards = [
+  {
+    name: "Yosemite Valley",
+    link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
+  },
+  {
+    name: "Lake Louise",
+    link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
+  },
+  {
+    name: "Bald Mountains",
+    link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
+  },
+  {
+    name: "Latemar",
+    link: "https://code.s3.yandex.net/web-code/latemar.jpg"
+  },
+  {
+    name: "Vanois National Park",
+    link: "https://code.s3.yandex.net/web-code/vanois.jpg"
+  },
+  {
+    name: "Lago di Braies",
+    link: "https://code.s3.yandex.net/web-code/lago.jpg"
+  }
+];
+
 // profile elements
 const profile = document.querySelector(".profile");
 const profileName = profile.querySelector(".profile__name");
@@ -27,39 +55,33 @@ const imageOverlay = imageOverlayContainer.parentElement;
 const imageOverlayCloseButton = imageOverlay.querySelector(".overlay__close-button");
 
 // register listeners
-editButton.addEventListener("click", openProfilePopup);
-addButton.addEventListener("click", openPlacePopup);
-profileCancelButton.addEventListener("click", closeProfilePopup);
-profileForm.addEventListener("submit", submitForm);
-placeCancelButton.addEventListener("click", closePlacePopup);
-placeForm.addEventListener("submit", submitPlaceForm);
-imageOverlayCloseButton.addEventListener("click", closeImageOverlay);
-
-function openProfilePopup() {
+editButton.addEventListener("click", () => {
   profileFieldName.value = profileName.textContent;
   profileFieldAboutMe.value = profileAboutMe.textContent;
-  profilePopup.classList.add("overlay_opened");
-}
+  togglePopup(profilePopup);
+});
 
-function closeProfilePopup() {
-  profilePopup.classList.remove("overlay_opened");
-}
-
-function openPlacePopup() {
+addButton.addEventListener("click", () => {
   placeFieldTitle.value = null;
   placeFieldLink.value = null;
-  placePopup.classList.add("overlay_opened");
-}
+  togglePopup(placePopup);
+});
 
-function closePlacePopup() {
-  placePopup.classList.remove("overlay_opened");
+profileCancelButton.addEventListener("click", () => togglePopup(profilePopup));
+placeCancelButton.addEventListener("click", () => togglePopup(placePopup));
+profileForm.addEventListener("submit", submitForm);
+placeForm.addEventListener("submit", submitPlaceForm);
+imageOverlayCloseButton.addEventListener("click", () => togglePopup(imageOverlay));
+
+function togglePopup(popup) {
+  popup.classList.toggle("overlay_opened");
 }
 
 function submitForm(event) {
   event.preventDefault();
   profileName.textContent = profileFieldName.value;
   profileAboutMe.textContent = profileFieldAboutMe.value;
-  closeProfilePopup();
+  togglePopup(profilePopup);
 }
 
 function submitPlaceForm(event) {
@@ -69,35 +91,33 @@ function submitPlaceForm(event) {
     link: placeFieldLink.value
   }
   addElement(newElement);
-  closePlacePopup();
+  togglePopup(placePopup);
 }
 
 function toggleLike(event) {
+  event.preventDefault();
   const likeButton = event.target;
   likeButton.classList.toggle("element__like_liked");
+  event.stopPropagation();
 }
 
 function removeElement(event) {
+  event.preventDefault();
   const removeButton = event.target;
   removeButton.parentElement.remove();
+  event.stopPropagation();
 }
 
-function closeImageOverlay() {
-  debugger;
-  imageOverlay.classList.remove("overlay_opened");
-}
-
-function openImageOverlay(event) {
-  const selectedImage = event.target;
-  const selectedImageTitle = selectedImage.querySelector(".element__title");
+function openImageOverlay(event, element) {
+  event.preventDefault();
   const image = imageOverlay.querySelector(".image");
   const imageTitle = imageOverlay.querySelector(".image__title");
 
-  image.src = selectedImage.style.backgroundImage.slice(5, -2);
-  image.alt = selectedImageTitle.textContent;
-  imageTitle.textContent = selectedImageTitle.textContent;
+  image.src = element.link;
+  image.alt = element.title;
+  imageTitle.textContent = element.title;
 
-  imageOverlay.classList.add("overlay_opened");
+  togglePopup(imageOverlay);
 }
 
 function addElement(element) {
@@ -109,7 +129,8 @@ function addElement(element) {
   const removeButton = elementFragment.querySelector(".element__remove");
   const elementTitle = newElement.querySelector(".element__title");
 
-  newElement.addEventListener("click", openImageOverlay);
+  newElement.addEventListener("click", (event) => openImageOverlay(event, element));
+
   removeButton.addEventListener("click", removeElement);
   likeButton.addEventListener("click", toggleLike);
 
@@ -119,38 +140,7 @@ function addElement(element) {
   elementsList.prepend(newElement);
 }
 
-function initializeCards() {
-
-  const initialCards = [
-    {
-      name: "Yosemite Valley",
-      link: "https://code.s3.yandex.net/web-code/yosemite.jpg"
-    },
-    {
-      name: "Lake Louise",
-      link: "https://code.s3.yandex.net/web-code/lake-louise.jpg"
-    },
-    {
-      name: "Bald Mountains",
-      link: "https://code.s3.yandex.net/web-code/bald-mountains.jpg"
-    },
-    {
-      name: "Latemar",
-      link: "https://code.s3.yandex.net/web-code/latemar.jpg"
-    },
-    {
-      name: "Vanois National Park",
-      link: "https://code.s3.yandex.net/web-code/vanois.jpg"
-    },
-    {
-      name: "Lago di Braies",
-      link: "https://code.s3.yandex.net/web-code/lago.jpg"
-    }
-  ];
-
-  initialCards.reverse().forEach(element => addElement(element));
-}
-
-initializeCards();
+// load intial cards
+initialCards.reverse().forEach(element => addElement(element));
 
 

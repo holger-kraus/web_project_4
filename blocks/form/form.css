@@ -3,7 +3,6 @@
 @import url("__field/_title/form__field_title.css");
 @import url("__field/_detail/form__field_detail.css");
 @import url("__save/form__save.css");
-@import url("__cancel/form__cancel.css");
 
 .form {
   display: flex;
