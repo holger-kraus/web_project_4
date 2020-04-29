@@ -4,13 +4,13 @@
   justify-content: flex-start;
   flex-wrap: wrap;
   align-items: center;
-  margin: 0 90px 0 25px;
-  width: 470px;
+  margin: 0 0 0 25px;
+  flex-grow: 1;
 }
 
 @media (max-width : 425px) {
   .profile__info {
     width: 240px;
-    margin: 13px auto 0
+    margin: 13px auto 0;
   }
 }
