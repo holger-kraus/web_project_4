@@ -1,9 +1,9 @@
 .profile__edit-button {
   width: 24px;
   height: 24px;
-  margin-left: 30px;
   background: url("../../../images/edit-button.png") no-repeat center;
   border: 1px solid #FFFFFF;
+  grid-column: 2 / 3;
 }
 
 .profile__edit-button:hover {
@@ -11,9 +11,8 @@
   cursor: pointer;
 }
 
-@media (max-width : 425px) {
+@media (max-width : 600px) {
   .profile__edit-button {
-    margin-left: 12px;
     width: 18px;
     height: 18px;
   }

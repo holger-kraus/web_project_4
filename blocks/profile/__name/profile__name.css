@@ -10,13 +10,14 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  grid-column: 1 / 2;
 }
 
-@media (max-width : 425px) {
+@media (max-width : 600px) {
   .profile__name {
     max-width: 200px;
     font-size: 22px;
-    line-height: 56px;
+    line-height: 30px;
   }
 }
 

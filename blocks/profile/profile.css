@@ -7,14 +7,14 @@
 
 .profile {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   flex-wrap: wrap;
   align-items: center;
   margin: 36px auto 0;
   max-width: 882px;
 }
 
-@media (max-width : 425px) {
+@media (max-width : 600px) {
   .profile {
     margin: 38px auto 0;
     flex-direction: column;
