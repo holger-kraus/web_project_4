@@ -31,36 +31,39 @@
 </footer>
 <section class="overlay">
   <div class="overlay__container overlay__container_profile">
-    <form action="#" class="form">
+    <form action="#" class="form" novalidate>
       <h2 class="form__title">Edit profile</h2>
       <label class="form__label form__label_title" for="profile-title-input">
-      <input id="profile-title-input" type="text" name="name" class="form__field form__field_title form__field_error">
-      <span id="profile-title-input-error" class="form__field-error">Please fill in this field</span>
+      <input id="profile-title-input" type="text"
+             name="name" class="form__field form__field_title"
+             minlength="2" maxlength="40" pattern="[a-zA-Z-\s]*" required>
+      <span id="profile-title-input-error" class="form__field-error"></span>
       </label>
       <label for="profile-link-input" class="form__label form__label_detail">
-        <input id="profile-link-input" type="text" name="aboutme" class="form__field form__field_detail form__field_error">
-        <span id="profile-link-input-error" class="form__field-error">Please fill in this field</span>
+        <input id="profile-link-input" type="text" name="aboutme" class="form__field form__field_detail"
+               minlength="2" maxlength="200" required>
+        <span id="profile-link-input-error" class="form__field-error"></span>
       </label>
-      <button type="submit" class="form__save form__save_inactive">Save</button>
+      <button type="submit" class="form__save">Save</button>
     </form>
     <button class="overlay__close-button"></button>
   </div>
 </section>
 <section class="overlay">
   <div class="overlay__container overlay__container_place">
-    <form action="#" class="form">
+    <form action="#" class="form" novalidate>
       <h2 class="form__title">New place</h2>
       <label class="form__label form__label_title" for="place-title-input">
         <input id="place-title-input" type="text" name="image-title"
-               class="form__field form__field_title form__field_error" placeholder="Title">
-        <span id="place-title-input-error" class="form__field-error">Please fill in this holger</span>
+               class="form__field form__field_title form__field_error" placeholder="Title" minlength="2" maxlength="40" required>
+        <span id="place-title-input-error" class="form__field-error"></span>
       </label>
       <label class="form__label form__label_detail" for="place-link-input">
-        <input id="place-link-input" type="text" name="image-link"
-               class="form__field form__field_detail form__field_error" placeholder="Image Link">
-        <span id="place-link-input-error" class="form__field-error">Please fill in this field</span>
+        <input id="place-link-input" type="url" name="image-link"
+               class="form__field form__field_detail form__field_error" placeholder="Image Link" required>
+        <span id="place-link-input-error" class="form__field-error"></span>
       </label>
-      <button type="submit" class="form__save form__save_inactive">Create</button>
+      <button type="submit" class="form__save">Create</button>
     </form>
     <button class="overlay__close-button"></button>
   </div>
@@ -84,5 +87,6 @@
   </li>
 </template>
 <script src="scripts/script.js"></script>
+<script src="scripts/validate.js"></script>
 </body>
 </html>

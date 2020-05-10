@@ -4,6 +4,7 @@
 @import url("__field/_detail/form__field_detail.css");
 @import url("__field/_error/form__field_error.css");
 @import url("__field-error/form__field-error.css");
+@import url("__field-error/_active/form__field-error_active.css");
 @import url("__save/form__save.css");
 @import url("__save/_inactive/form__save_inactive.css");
 @import url("__label/form__label.css");

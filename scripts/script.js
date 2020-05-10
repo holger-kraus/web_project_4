@@ -55,26 +55,51 @@ const imageOverlay = imageOverlayContainer.parentElement;
 const imageOverlayCloseButton = imageOverlay.querySelector(".overlay__close-button");
 
 // register listeners
-editButton.addEventListener("click", () => {
+editButton.addEventListener("click", (event) => {
   profileFieldName.value = profileName.textContent;
   profileFieldAboutMe.value = profileAboutMe.textContent;
-  togglePopup(profilePopup);
+  togglePopup(event, profilePopup);
 });
 
-addButton.addEventListener("click", () => {
+addButton.addEventListener("click", (event) => {
   placeFieldTitle.value = null;
   placeFieldLink.value = null;
-  togglePopup(placePopup);
+  togglePopup(event, placePopup);
 });
 
-profileCancelButton.addEventListener("click", () => togglePopup(profilePopup));
-placeCancelButton.addEventListener("click", () => togglePopup(placePopup));
+// listeners for closing the profile popup
+profileCancelButton.addEventListener("click", (event) => togglePopup(event, profilePopup));
+profilePopup.addEventListener("click", (event) => togglePopup(event, profilePopup));
+profileForm.addEventListener("click", (event) => event.stopPropagation());
+profilePopup.addEventListener( "keydown", (event) => {
+  if (event.key === "Escape") {
+    togglePopup(event, profilePopup);
+  }
+});
+
+// listeners for closing the place popup
+placeCancelButton.addEventListener("click", (event) => togglePopup(event, placePopup));
+placePopup.addEventListener("click", () => togglePopup(placePopup));
+placeForm.addEventListener("click", (event) => event.stopPropagation());
+placePopup.addEventListener( "keydown", (event) => {
+  if (event.key === "Escape") {
+    togglePopup(event, placePopup);
+  }
+});
+
+// listeners for closing the image popup
+imageOverlayCloseButton.addEventListener("click", (event) => togglePopup(event, imageOverlay));
+imageOverlay.addEventListener("click", (event) => togglePopup(event, imageOverlay));
+imageOverlayContainer.addEventListener("click", (event) => event.stopPropagation());
+
+// submit listeners
 profileForm.addEventListener("submit", submitForm);
 placeForm.addEventListener("submit", submitPlaceForm);
-imageOverlayCloseButton.addEventListener("click", () => togglePopup(imageOverlay));
 
-function togglePopup(popup) {
+function togglePopup(event, popup) {
   popup.classList.toggle("overlay_opened");
+  event.target.dispatchEvent(new Event("input"));
+  event.stopPropagation();
 }
 
 function submitForm(event) {
@@ -117,7 +142,7 @@ function openImageOverlay(event, element) {
   image.alt = element.title;
   imageTitle.textContent = element.title;
 
-  togglePopup(imageOverlay);
+  togglePopup(event, imageOverlay);
 }
 
 function addElement(element) {

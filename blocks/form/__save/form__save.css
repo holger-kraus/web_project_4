@@ -8,6 +8,7 @@
   color: #FFFFFF;
   border: 0;
   background-color: #000000;
+  cursor: pointer;
 }
 
 .form__save:hover {
