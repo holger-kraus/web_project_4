@@ -34,6 +34,19 @@ function toggleButtonState(inputList, buttonElement, settings) {
   }
 }
 
+function initialValidationCheck(formElement, settings) {
+  const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
+  const buttonElement = formElement.querySelector(settings.submitButtonSelector);
+
+  // After opening the popup I don't want to show errors
+  inputList.forEach((inputElement) => {
+    hideInputError(formElement, inputElement, settings);
+  });
+
+  // The submit button should have a state which represents what you really can do with it
+  toggleButtonState(inputList, buttonElement, settings);
+}
+
 function setEventListeners(formElement, settings) {
   const inputList = Array.from(formElement.querySelectorAll(settings.inputSelector));
   const buttonElement = formElement.querySelector(settings.submitButtonSelector);
@@ -42,8 +55,8 @@ function setEventListeners(formElement, settings) {
 
   inputList.forEach((inputElement) => {
     inputElement.addEventListener("input", function () {
-      checkInputValidity(formElement, inputElement, settings);
-      toggleButtonState(inputList, buttonElement, settings);
+        checkInputValidity(formElement, inputElement, settings);
+        toggleButtonState(inputList, buttonElement, settings);
     });
   });
 }
@@ -56,10 +69,10 @@ function enableValidation(settings) {
 }
 
 enableValidation({
-    formSelector: ".form",
-    inputSelector: ".form__field",
-    submitButtonSelector: ".form__save",
-    inactiveButtonClass: "form__save_inactive",
-    inputErrorClass: "form__field_error",
-    errorClass: "form__field-error_active"
+  formSelector: ".form",
+  inputSelector: ".form__field",
+  submitButtonSelector: ".form__save",
+  inactiveButtonClass: "form__save_inactive",
+  inputErrorClass: "form__field_error",
+  errorClass: "form__field-error_active"
 });

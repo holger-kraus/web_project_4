@@ -26,6 +26,16 @@ const initialCards = [
   }
 ];
 
+// validation settings
+const validationSettings = {
+  formSelector: ".form",
+  inputSelector: ".form__field",
+  submitButtonSelector: ".form__save",
+  inactiveButtonClass: "form__save_inactive",
+  inputErrorClass: "form__field_error",
+  errorClass: "form__field-error_active"
+}
+
 // profile elements
 const profile = document.querySelector(".profile");
 const profileName = profile.querySelector(".profile__name");
@@ -37,17 +47,24 @@ const addButton = profile.querySelector(".profile__add-button");
 const profileOverlayContainer = document.querySelector(".overlay__container_profile");
 const profilePopup = profileOverlayContainer.parentElement;
 const profileFieldName = profileOverlayContainer.querySelector(".form__field_title");
+const profileFieldNameError = profileOverlayContainer.querySelector("#profile-title-input-error");
 const profileFieldAboutMe = profileOverlayContainer.querySelector(".form__field_detail");
+const profileFieldAboutMeError = profileOverlayContainer.querySelector("#profile-link-input-error"); //todo rename this id field
 const profileCancelButton = profileOverlayContainer.querySelector(".overlay__close-button");
 const profileForm = profileOverlayContainer.querySelector(".form");
+const profileFormSaveButton = profileOverlayContainer.querySelector(".form__save");
+
 
 // overlay-place elements
 const placeOverlayContainer = document.querySelector(".overlay__container_place");
 const placePopup = placeOverlayContainer.parentElement;
 const placeFieldTitle = placePopup.querySelector(".form__field_title");
+const placeFieldTitleError = placeOverlayContainer.querySelector("#place-title-input-error");
 const placeFieldLink = placePopup.querySelector(".form__field_detail");
+const placeFieldLinkError = placePopup.querySelector("#place-link-input-error");
 const placeCancelButton = placePopup.querySelector(".overlay__close-button");
 const placeForm = placePopup.querySelector(".form");
+const placeFormSaveButton = placeOverlayContainer.querySelector(".form__save");
 
 // overlay-image elements
 const imageOverlayContainer = document.querySelector(".overlay__container_image");
@@ -56,14 +73,12 @@ const imageOverlayCloseButton = imageOverlay.querySelector(".overlay__close-butt
 
 // register listeners
 editButton.addEventListener("click", (event) => {
-  profileFieldName.value = profileName.textContent;
-  profileFieldAboutMe.value = profileAboutMe.textContent;
+  initProfileForm();
   togglePopup(event, profilePopup);
 });
 
 addButton.addEventListener("click", (event) => {
-  placeFieldTitle.value = null;
-  placeFieldLink.value = null;
+  initPlaceForm();
   togglePopup(event, placePopup);
 });
 
@@ -79,7 +94,7 @@ profilePopup.addEventListener( "keydown", (event) => {
 
 // listeners for closing the place popup
 placeCancelButton.addEventListener("click", (event) => togglePopup(event, placePopup));
-placePopup.addEventListener("click", () => togglePopup(placePopup));
+placePopup.addEventListener("click", (event) => togglePopup(event, placePopup));
 placeForm.addEventListener("click", (event) => event.stopPropagation());
 placePopup.addEventListener( "keydown", (event) => {
   if (event.key === "Escape") {
@@ -95,6 +110,28 @@ imageOverlayContainer.addEventListener("click", (event) => event.stopPropagation
 // submit listeners
 profileForm.addEventListener("submit", submitForm);
 placeForm.addEventListener("submit", submitPlaceForm);
+
+function initProfileForm() {
+  profileFieldName.value = profileName.textContent;
+  profileFieldAboutMe.value = profileAboutMe.textContent;
+  initialValidationCheck(profileForm, validationSettings);
+  // profileFieldName.classList.remove("form__field_error");
+  // profileFieldName.classList.remove("form__field_error");
+  // profileFieldNameError.classList.remove("form__field-error_active");
+  // profileFieldAboutMeError.classList.remove("form__field-error_active");
+  // profileFormSaveButton.classList.remove("form__save_inactive");
+}
+
+function initPlaceForm() {
+  placeFieldTitle.value = null;
+  placeFieldLink.value = null;
+  initialValidationCheck(placeForm, validationSetting s);
+  // placeFieldTitle.classList.remove("form__field_error");
+  // placeFieldLink.classList.remove("form__field_error");
+  // placeFieldTitleError.classList.remove("form__field-error_active");
+  // placeFieldLinkError.classList.remove("form__field-error_active");
+  // placeFormSaveButton.classList.add("form__save_inactive");
+}
 
 function togglePopup(event, popup) {
   popup.classList.toggle("overlay_opened");
