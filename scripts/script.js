@@ -1,3 +1,5 @@
+import {Card} from "./Card.js";
+
 // cards, that will be initially loaded
 const initialCards = [
   {
@@ -118,7 +120,6 @@ function initPlaceForm() {
 
 function togglePopup(event, popup) {
   popup.classList.toggle("overlay_opened");
-  event.target.dispatchEvent(new Event("input"));
   event.stopPropagation();
 }
 
@@ -139,49 +140,9 @@ function submitPlaceForm(event) {
   togglePopup(event, placePopup);
 }
 
-function toggleLike(event) {
-  event.preventDefault();
-  const likeButton = event.target;
-  likeButton.classList.toggle("element__like_liked");
-  event.stopPropagation();
-}
-
-function removeElement(event) {
-  event.preventDefault();
-  const removeButton = event.target;
-  removeButton.parentElement.remove();
-  event.stopPropagation();
-}
-
-function openImageOverlay(event, element) {
-  event.preventDefault();
-  const image = imageOverlay.querySelector(".image");
-  const imageTitle = imageOverlay.querySelector(".image__title");
-
-  image.src = element.link;
-  image.alt = element.title;
-  imageTitle.textContent = element.title;
-
-  togglePopup(event, imageOverlay);
-}
-
 function addElement(element) {
-  const elementTemplate = document.querySelector("#element__template").content;
+  const newElement = new Card(element.name, element.link, "#element__template").generateCard();
   const elementsList = document.querySelector(".elements__list");
-  const elementFragment = elementTemplate.cloneNode(true);
-  const newElement = elementFragment.querySelector(".element");
-  const likeButton = elementFragment.querySelector(".element__like");
-  const removeButton = elementFragment.querySelector(".element__remove");
-  const elementTitle = newElement.querySelector(".element__title");
-
-  newElement.addEventListener("click", (event) => openImageOverlay(event, element));
-
-  removeButton.addEventListener("click", removeElement);
-  likeButton.addEventListener("click", toggleLike);
-
-  newElement.style.backgroundImage = "url('" + element.link + "')";
-  elementTitle.textContent = element.name;
-
   elementsList.prepend(newElement);
 }
 
