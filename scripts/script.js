@@ -1,4 +1,5 @@
 import {Card} from "./Card.js";
+import {FormValidator} from "./FormValidator.js";
 
 // cards, that will be initially loaded
 const initialCards = [
@@ -66,6 +67,10 @@ const imageOverlayContainer = document.querySelector(".overlay__container_image"
 const imageOverlay = imageOverlayContainer.parentElement;
 const imageOverlayCloseButton = imageOverlay.querySelector(".overlay__close-button");
 
+// form validators
+const profileFormValidator = new FormValidator(profileForm, validationSettings);
+const placeFormValidator = new FormValidator(placeForm, validationSettings);
+
 // register listeners
 editButton.addEventListener("click", (event) => {
   initProfileForm();
@@ -109,13 +114,13 @@ placeForm.addEventListener("submit", submitPlaceForm);
 function initProfileForm() {
   profileFieldName.value = profileName.textContent;
   profileFieldAboutMe.value = profileAboutMe.textContent;
-  initialValidationCheck(profileForm, validationSettings);
+  profileFormValidator.enableValidation();
 }
 
 function initPlaceForm() {
   placeFieldTitle.value = null;
   placeFieldLink.value = null;
-  initialValidationCheck(placeForm, validationSettings);
+  placeFormValidator.enableValidation();
 }
 
 function togglePopup(event, popup) {

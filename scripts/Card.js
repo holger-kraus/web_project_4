@@ -16,9 +16,9 @@ class Card {
   }
 
   _setElementEventListener() {
-    const imageOverlay = document.querySelector(".overlay__container_image").parentElement;
     this._element.addEventListener("click", (event) => {
       event.preventDefault();
+      const imageOverlay = document.querySelector(".overlay__container_image").parentElement;
       const image = imageOverlay.querySelector(".image");
       const imageTitle = imageOverlay.querySelector(".image__title");
 
