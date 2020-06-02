@@ -67,10 +67,6 @@ const imageOverlayContainer = document.querySelector(".overlay__container_image"
 const imageOverlay = imageOverlayContainer.parentElement;
 const imageOverlayCloseButton = imageOverlay.querySelector(".overlay__close-button");
 
-// form validators
-const profileFormValidator = new FormValidator(profileForm, validationSettings);
-const placeFormValidator = new FormValidator(placeForm, validationSettings);
-
 // register listeners
 editButton.addEventListener("click", (event) => {
   initProfileForm();
@@ -83,8 +79,7 @@ addButton.addEventListener("click", (event) => {
 });
 
 // listeners for closing the profile popup
-profileCancelButton.addEventListener("click", (event) => togglePopup(event, profilePopup));
-profilePopup.addEventListener("click", (event) => togglePopup(event, profilePopup));
+setTooglePopupEventListeners([profilePopup, profileCancelButton], profilePopup);
 profileForm.addEventListener("click", (event) => event.stopPropagation());
 profilePopup.addEventListener( "keydown", (event) => {
   if (event.key === "Escape") {
@@ -93,8 +88,7 @@ profilePopup.addEventListener( "keydown", (event) => {
 });
 
 // listeners for closing the place popup
-placeCancelButton.addEventListener("click", (event) => togglePopup(event, placePopup));
-placePopup.addEventListener("click", (event) => togglePopup(event, placePopup));
+setTooglePopupEventListeners([placePopup, placeCancelButton], placePopup);
 placeForm.addEventListener("click", (event) => event.stopPropagation());
 placePopup.addEventListener( "keydown", (event) => {
   if (event.key === "Escape") {
@@ -103,24 +97,39 @@ placePopup.addEventListener( "keydown", (event) => {
 });
 
 // listeners for closing the image popup
-imageOverlayCloseButton.addEventListener("click", (event) => togglePopup(event, imageOverlay));
-imageOverlay.addEventListener("click", (event) => togglePopup(event, imageOverlay));
+setTooglePopupEventListeners([imageOverlay, imageOverlayCloseButton], imageOverlay);
 imageOverlayContainer.addEventListener("click", (event) => event.stopPropagation());
 
 // submit listeners
 profileForm.addEventListener("submit", submitForm);
 placeForm.addEventListener("submit", submitPlaceForm);
 
+// enable form validation
+new FormValidator(profileForm, validationSettings).enableValidation();
+new FormValidator(placeForm, validationSettings).enableValidation();
+
 function initProfileForm() {
+  // setting the input fields to their initial values
   profileFieldName.value = profileName.textContent;
   profileFieldAboutMe.value = profileAboutMe.textContent;
-  profileFormValidator.enableValidation();
+  // triggering input events for resetting validation information
+  profileFieldName.dispatchEvent(new Event("input"));
+  profileFieldAboutMe.dispatchEvent(new Event("input"));
 }
 
 function initPlaceForm() {
+  // setting the input fields to their initial values
   placeFieldTitle.value = null;
   placeFieldLink.value = null;
-  placeFormValidator.enableValidation();
+  // triggering input events for resetting validation information
+  placeFieldTitle.dispatchEvent(new Event("input"));
+  placeFieldLink.dispatchEvent(new Event("input"));
+}
+
+function setTooglePopupEventListeners(elements, popup) {
+  elements.forEach((element) => {
+    element.addEventListener("click", (event) => togglePopup(event, popup));
+  });
 }
 
 function togglePopup(event, popup) {
