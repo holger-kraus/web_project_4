@@ -1,8 +1,9 @@
-class Card {
-  constructor(imageTitle, imageLink, cardSelector) {
+export default class Card {
+  constructor(imageTitle, imageLink, cardSelector, handleCardClick) {
     this._imageTitle = imageTitle;
     this._imageLink = imageLink;
     this._cardSelector = cardSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -15,17 +16,10 @@ class Card {
 
   _setElementEventListener() {
     this._element.addEventListener("click", (event) => {
-      event.preventDefault();
-      const imageOverlay = document.querySelector(".overlay__container_image").parentElement;
-      const image = imageOverlay.querySelector(".image");
-      const imageTitle = imageOverlay.querySelector(".image__title");
+      this._handleCardClick(event);
 
-      image.src = this._imageLink;
-      image.alt =  this._imageTitle;
-      imageTitle.textContent =  this._imageTitle;
 
-      imageOverlay.classList.toggle("overlay_opened");
-      event.stopPropagation();
+
     });
 
   }
@@ -63,5 +57,3 @@ class Card {
     return this._element;
   }
 }
-
-export {Card};
