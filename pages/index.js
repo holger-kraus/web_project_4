@@ -1,3 +1,5 @@
+import "./index.css";
+
 import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
@@ -54,7 +56,7 @@ const handleProfileSubmit = function (event, fieldValues) {
   event.preventDefault();
   userInfo.setUserInfo(fieldValues.titleValue, fieldValues.detailValue);
 }
-const profileFormPopup = new PopupWithForm(".overlay__container_profile", handleProfileSubmit);
+const profileFormPopup = new PopupWithForm(".overlay_profile", handleProfileSubmit);
 profileFormPopup.setEventListeners();
 
 const profileOverlayContainer = document.querySelector(".overlay__container_profile");
@@ -72,7 +74,7 @@ const handlePlaceSubmit = function (event, fieldValues) {
   const newCard = new Card(fieldValues.titleValue, fieldValues.detailValue, "#element__template", handleCardClick).generateCard();
   cardList.setItem(newCard);
 }
-const placeFormPopup = new PopupWithForm(".overlay__container_place", handlePlaceSubmit);
+const placeFormPopup = new PopupWithForm(".overlay_place", handlePlaceSubmit);
 placeFormPopup.setEventListeners();
 
 const placeOverlayContainer = document.querySelector(".overlay__container_place");
@@ -90,7 +92,7 @@ addButton.addEventListener("click", (event) => {
 });
 
 // overlay image elements
-const imagePopup = new PopupWithImage(".overlay__container_image");
+const imagePopup = new PopupWithImage(".overlay_image");
 imagePopup.setEventListeners();
 
 const cardList = new Section({
