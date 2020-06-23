@@ -31,7 +31,6 @@ export default class Popup {
     });
 
     this._popup.addEventListener("keydown", (event) => {
-      console.log("Hallo");
       this._handleEscClose(event);
     });
   }
