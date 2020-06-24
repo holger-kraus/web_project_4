@@ -14,13 +14,14 @@ export default class PopupWithForm extends Popup {
     return {
       titleValue: this._titleInputField.value,
       detailValue: this._detailInputField.value
-    }
+    };
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener("submit", (event) => {
-      this._handleFormSubmission(event, this._getInputValues());
+      event.preventDefault();
+      this._handleFormSubmission(this._getInputValues());
       this.close();
     });
 
@@ -38,8 +39,6 @@ export default class PopupWithForm extends Popup {
 
   close() {
     super.close();
-    // setting input fields to null
-    this._titleInputField.value = null;
-    this._detailInputField.value = null;
+    this._form.reset();
   }
 }

@@ -16,20 +16,17 @@ export default class Card {
 
   _setElementEventListener() {
     this._element.addEventListener("click", (event) => {
-      this._handleCardClick(event);
-
-
-
+      this._handleCardClick(this._imageTitle, this._imageLink);
+      event.stopPropagation();
     });
-
   }
 
   _setRemoveButtonEventListener() {
     const removeButton = this._element.querySelector(".element__remove");
     removeButton.addEventListener("click", (event) => {
       event.preventDefault();
-      const removeButton = event.target;
-      removeButton.parentElement.remove();
+      const clickedButton = event.target;
+      clickedButton.parentElement.remove();
       event.stopPropagation();
     });
   }
@@ -38,8 +35,8 @@ export default class Card {
     const likeButton = this._element.querySelector(".element__like");
     likeButton.addEventListener("click", (event) => {
       event.preventDefault();
-      const likeButton = event.target;
-      likeButton.classList.toggle("element__like_liked");
+      const clickedButton = event.target;
+      clickedButton.classList.toggle("element__like_liked");
       event.stopPropagation();
     });
   }
@@ -51,7 +48,7 @@ export default class Card {
     this._setLikeButtonEventListener();
 
     const elementTitle = this._element.querySelector(".element__title");
-    this._element.style.backgroundImage = "url('" + this._imageLink + "')";
+    this._element.style.backgroundImage = `url('${this._imageLink}')`;
     elementTitle.textContent = this._imageTitle;
 
     return this._element;

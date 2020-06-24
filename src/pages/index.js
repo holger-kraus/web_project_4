@@ -45,6 +45,23 @@ const validationSettings = {
   errorClass: "form__field-error_active"
 }
 
+// overlay image elements
+const imagePopup = new PopupWithImage(".overlay_image");
+imagePopup.setEventListeners();
+
+// create section
+const cardList = new Section({
+    items: initialCards.reverse(),
+    renderer: (card) => {
+      const handleCardClick = (imageTitle, imageLink) => {
+        imagePopup.open(imageTitle, imageLink);
+      };
+      const newCard = new Card(card.name, card.link, "#element__template", handleCardClick).generateCard();
+      cardList.setItem(newCard);
+    }
+  },
+  ".elements__list");
+
 // profile elements
 const profile = document.querySelector(".profile");
 const editButton = profile.querySelector(".profile__edit-button");
@@ -52,10 +69,9 @@ const addButton = profile.querySelector(".profile__add-button");
 const userInfo = new UserInfo(".profile__name", ".profile__about-me");
 
 // overlay profile elements
-const handleProfileSubmit = function (event, fieldValues) {
-  event.preventDefault();
+const handleProfileSubmit = (fieldValues) => {
   userInfo.setUserInfo(fieldValues.titleValue, fieldValues.detailValue);
-}
+};
 const profileFormPopup = new PopupWithForm(".overlay_profile", handleProfileSubmit);
 profileFormPopup.setEventListeners();
 
@@ -64,16 +80,13 @@ const profileForm = profileOverlayContainer.querySelector(".form");
 new FormValidator(profileForm, validationSettings).enableValidation();
 
 // overlay place elements
-const handlePlaceSubmit = function (event, fieldValues) {
-  event.preventDefault();
-  const handleCardClick = (event) => {
-    event.preventDefault();
-    imagePopup.open(fieldValues.titleValue, fieldValues.detailValue);
-    event.stopPropagation();
-  }
+const handlePlaceSubmit = (fieldValues) => {
+  const handleCardClick = (imageTitle, imageLink) => {
+    imagePopup.open(imageTitle, imageLink);
+  };
   const newCard = new Card(fieldValues.titleValue, fieldValues.detailValue, "#element__template", handleCardClick).generateCard();
   cardList.setItem(newCard);
-}
+};
 const placeFormPopup = new PopupWithForm(".overlay_place", handlePlaceSubmit);
 placeFormPopup.setEventListeners();
 
@@ -82,32 +95,14 @@ const placeForm = placeOverlayContainer.querySelector(".form");
 new FormValidator(placeForm, validationSettings).enableValidation();
 
 // register open form listeners
-editButton.addEventListener("click", (event) => {
+editButton.addEventListener("click", () => {
   const {name, aboutMe} = userInfo.getUserInfo();
   profileFormPopup.open(name, aboutMe);
 });
 
-addButton.addEventListener("click", (event) => {
+addButton.addEventListener("click", () => {
   placeFormPopup.open(null, null);
 });
-
-// overlay image elements
-const imagePopup = new PopupWithImage(".overlay_image");
-imagePopup.setEventListeners();
-
-const cardList = new Section({
-    items: initialCards.reverse(),
-    renderer: card => {
-      const handleCardClick = (event) => {
-        event.preventDefault();
-        imagePopup.open(card.name, card.link);
-        event.stopPropagation();
-      }
-      const newCard = new Card(card.name, card.link, "#element__template", handleCardClick).generateCard();
-      cardList.setItem(newCard);
-    }
-  },
-  ".elements__list");
 
 cardList.renderItems();
 

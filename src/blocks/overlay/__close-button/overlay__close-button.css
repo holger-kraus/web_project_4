@@ -5,8 +5,7 @@
   right: -45px;
   width: 58px;
   height: 58px;
-  background-size: 58px 58px;
-  background: url("../../../images/close-icon.svg");
+  background: 58px 58px url("../../../images/close-icon.svg");
 }
 
 .overlay__close-button:hover {
