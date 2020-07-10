@@ -1,23 +1,14 @@
 import Popup from "./Popup.js";
 
-export default class PopupWithForm extends Popup {
+export default class PopupWithConfirmation extends Popup {
 
-  constructor(popupSelector, submitButtonLoadingText, handleFormSubmission) {
+  constructor(popupSelector, submitButtonLoadingText, handleConfirmation) {
     super(popupSelector);
-    this._handleFormSubmission = handleFormSubmission;
+    this._handleConfirmation = handleConfirmation;
     this._form = this._popup.querySelector(".form");
     this._submitButton = this._popup.querySelector(".form__save");
     this._submitButtonText = this._submitButton.textContent;
     this._submitButtonLoadingText = submitButtonLoadingText;
-    this._titleInputField = this._form.querySelector(".form__field_title");
-    this._detailInputField = this._form.querySelector(".form__field_detail");
-  }
-
-  _getInputValues() {
-    return {
-      titleValue: this._titleInputField ? this._titleInputField.value : null,
-      detailValue: this._detailInputField ? this._detailInputField.value : null
-    };
   }
 
   renderLoading(isLoading) {
@@ -33,7 +24,7 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener("submit", (event) => {
       event.preventDefault();
       this.renderLoading(true);
-      this._handleFormSubmission(this._getInputValues(), () => {
+      this._handleConfirmation(this._currentObject, () => {
         this.renderLoading(false);
         this.close();
       });
@@ -42,15 +33,8 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener("click", (event) => event.stopPropagation());
   }
 
-  open(title, detail) {
-    if (this._titleInputField) {
-      this._titleInputField.value = title;
-      this._titleInputField.dispatchEvent(new Event("input"));
-    }
-    if (this._detailInputField) {
-      this._detailInputField.value = detail;
-      this._detailInputField.dispatchEvent(new Event("input"));
-    }
+  open(currentObject) {
+    this._currentObject = currentObject;
     super.open();
   }
 

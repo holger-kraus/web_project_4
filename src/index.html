@@ -11,11 +11,14 @@
 </header>
 <main class="content">
   <section class="profile">
-    <img class="profile__avatar" alt="profile avatar" src="images/portrait.jpg">
+    <button class="profile__avatar">
+      <img class="profile__avatar-image" alt="profile avatar" src="#">
+      <div class="profile__avatar-edit"></div>
+    </button>
     <div class="profile__info">
-      <h1 class="profile__name">Jacques Cousteau</h1>
+      <h1 class="profile__name"></h1>
       <button class="profile__edit-button"></button>
-      <p class="profile__about-me">Explorer</p>
+      <p class="profile__about-me"></p>
     </div>
     <button class="profile__add-button"></button>
   </section>
@@ -67,6 +70,29 @@
     <button class="overlay__close-button"></button>
   </div>
 </section>
+<section class="overlay overlay_avatarpic">
+  <div class="overlay__container overlay__container_avatarpic">
+    <form action="#" class="form" novalidate>
+      <h2 class="form__title">Change Userpic</h2>
+      <label class="form__label form__label_title" for="avatarpic-link-input">
+        <input id="avatarpic-link-input" type="url" name="avatarpic-link"
+               class="form__field form__field_title" placeholder="Image Link" required>
+        <span id="avatarpic-link-input-error" class="form__field-error"></span>
+      </label>
+      <button type="submit" class="form__save">Save</button>
+    </form>
+    <button class="overlay__close-button"></button>
+  </div>
+</section>
+<section class="overlay overlay_confirmation">
+  <div class="overlay__container overlay__container_confirmation">
+    <form action="#" class="form" novalidate>
+      <h2 class="form__title">Are you sure?</h2>
+      <button type="submit" class="form__save">Yes</button>
+    </form>
+    <button class="overlay__close-button"></button>
+  </div>
+</section>
 <section class="overlay overlay_image">
   <div class="overlay__container overlay__container_image">
     <img class="image" alt="image title">
@@ -80,7 +106,10 @@
       <button class="element__remove"></button>
       <div class="element__title-container">
         <h2 class="element__title"></h2>
-        <button class="element__like"></button>
+        <div class="element__like">
+          <button class="element__like-button"></button>
+          <span class="element__like-count">1</span>
+        </div>
       </div>
     </a>
   </li>
