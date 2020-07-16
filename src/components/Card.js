@@ -30,11 +30,10 @@ export default class Card {
   }
 
   _setRemoveButtonEventListener() {
-    const thisCard = this;
     const removeButton = this._element.querySelector(".element__remove");
     removeButton.addEventListener("click", (event) => {
       event.preventDefault();
-      this._handleRemoveCard(thisCard);
+      this._handleRemoveCard(this._cardId);
       event.stopPropagation();
     });
   }

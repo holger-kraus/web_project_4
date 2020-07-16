@@ -4,7 +4,6 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import PopupWithImage from "../components/PopupWithImage.js";
 import PopupWithForm from "../components/PopupWithForm.js";
-import PopupWithConfirmation from "../components/PopupWithConfirmation.js";
 import UserInfo from "../components/UserInfo.js";
 import Section from "../components/Section.js";
 import Api from "../components/Api.js";
@@ -46,7 +45,7 @@ const userInfo = new UserInfo(".profile__name", ".profile__about-me", ".profile_
 
 // overlay profile description
 const handleProfileSubmit = (fieldValues, finalAction) => {
-  api.updateProfile(fieldValues.titleValue, fieldValues.detailValue)
+  api.updateProfile(fieldValues[0], fieldValues[1])
     .then((profile) => {
       userInfo.setUserInfo(profile.name, profile.about);
     }).catch((err) => {
@@ -62,7 +61,7 @@ new FormValidator(profileForm, validationSettings).enableValidation();
 
 // overlay profile avatar
 const handleProfileAvatarSubmit = (fieldValues, finalAction) => {
-  api.updateProfilePicture(fieldValues.titleValue)
+  api.updateProfilePicture(fieldValues[0])
     .then((profile) => {
       userInfo.setAvatar(profile.avatar);
     }).catch((err) => {
@@ -76,10 +75,10 @@ const profileAvatarContainer = document.querySelector(".overlay__container_avata
 const profileAvatarForm = profileAvatarContainer.querySelector(".form");
 new FormValidator(profileAvatarForm, validationSettings).enableValidation();
 
-const deleteCard = (card, finalAction) => {
-  api.deleteCard(card._cardId)
+const deleteCard = (fieldValues, finalAction) => {
+  api.deleteCard(fieldValues[0])
     .then(() => {
-      card.removeCard();
+      cardList.removeItem(fieldValues[0])
     }).catch((err) => {
     console.log(err);
   }).finally(() => {
@@ -87,7 +86,7 @@ const deleteCard = (card, finalAction) => {
     }
   );
 }
-const confirmationFormPopup = new PopupWithConfirmation(".overlay_confirmation", "Deleting...", deleteCard);
+const confirmationFormPopup = new PopupWithForm(".overlay_confirmation", "Deleting...", deleteCard);
 confirmationFormPopup.setEventListeners();
 
 const handleLike = (cardId, card) => {
@@ -116,14 +115,14 @@ const addCard = (cardId, title, link, likedBy) => {
     imagePopup.open(imageTitle, imageLink);
   };
   const handleRemoveCard = (card) => {
-    confirmationFormPopup.open(card);
+    confirmationFormPopup.open([card]);
   }
   const newCard = new Card(cardId, userInfo.userId, title, link, likedBy, "#element__template", handleCardClick, handleRemoveCard, handleLike, handleDislike).generateCard();
-  cardList.setItem(newCard);
+  cardList.setItem(cardId, newCard);
 };
 
 const handlePlaceSubmit = (fieldValues, finalAction) => {
-  api.addCard(fieldValues.titleValue, fieldValues.detailValue)
+  api.addCard(fieldValues[0], fieldValues[1])
     .then((card) => {
       const likedBy = card.likes.map((like) => like._id);
       addCard(card._id, card.name, card.link, likedBy);
@@ -141,15 +140,15 @@ new FormValidator(placeForm, validationSettings).enableValidation();
 // register open form listeners
 editButton.addEventListener("click", () => {
   const {name, aboutMe} = userInfo.getUserInfo();
-  profileFormPopup.open(name, aboutMe);
+  profileFormPopup.open([name, aboutMe]);
 });
 
 addButton.addEventListener("click", () => {
-  placeFormPopup.open(null, null);
+  placeFormPopup.open([null, null]);
 });
 
 profileAvatarButton.addEventListener("click", () => {
-  profileAvatarFormPopup.open("", "")
+  profileAvatarFormPopup.open(["", ""])
 })
 
 // load profile and intial cards in parallel to increase speed

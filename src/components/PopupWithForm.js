@@ -6,18 +6,16 @@ export default class PopupWithForm extends Popup {
     super(popupSelector);
     this._handleFormSubmission = handleFormSubmission;
     this._form = this._popup.querySelector(".form");
+
     this._submitButton = this._popup.querySelector(".form__save");
     this._submitButtonText = this._submitButton.textContent;
     this._submitButtonLoadingText = submitButtonLoadingText;
-    this._titleInputField = this._form.querySelector(".form__field_title");
-    this._detailInputField = this._form.querySelector(".form__field_detail");
+
   }
 
   _getInputValues() {
-    return {
-      titleValue: this._titleInputField ? this._titleInputField.value : null,
-      detailValue: this._detailInputField ? this._detailInputField.value : null
-    };
+    const formElements = Array.from(this._form.elements);
+    return formElements.map((element) => element.value);
   }
 
   renderLoading(isLoading) {
@@ -38,18 +36,14 @@ export default class PopupWithForm extends Popup {
         this.close();
       });
     });
-
     this._form.addEventListener("click", (event) => event.stopPropagation());
   }
 
-  open(title, detail) {
-    if (this._titleInputField) {
-      this._titleInputField.value = title;
-      this._titleInputField.dispatchEvent(new Event("input"));
-    }
-    if (this._detailInputField) {
-      this._detailInputField.value = detail;
-      this._detailInputField.dispatchEvent(new Event("input"));
+  open(initValues) {
+    const formElements = Array.from(this._form.elements);
+    for (let i = 0; i < formElements.length; i++) {
+      formElements[i].value = initValues[i];
+      formElements[i].dispatchEvent(new Event("input"));
     }
     super.open();
   }
