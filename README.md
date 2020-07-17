@@ -42,9 +42,5 @@ In detail the following technologies and methods have been used:
     * working with the DOM
     * reading and updating values in the DOM
 
-### Have a look!
-
-The page is installed on Github Pages [here](https://holger-kraus.github.io/web_project_4/).
-
 
 

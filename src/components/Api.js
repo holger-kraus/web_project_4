@@ -59,7 +59,7 @@ export default class Api {
   _getResource(uri) {
     return fetch(uri, {
       headers: this.headers
-    }).then(res => {
+    }).then((res) => {
       if (res.ok) {
         return res.json();
       }
@@ -71,7 +71,7 @@ export default class Api {
     return fetch(uri, {
       method: method,
       headers: this.headers
-    }).then(res => {
+    }).then((res) => {
       if (res.ok) {
         return res.json();
       }
@@ -84,7 +84,7 @@ export default class Api {
       method: method,
       headers: this.headers,
       body: body
-    }).then(res => {
+    }).then((res) => {
       if (res.ok) {
         return res.json();
       }

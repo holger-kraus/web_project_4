@@ -44,10 +44,10 @@ const profileAvatarButton = profile.querySelector(".profile__avatar");
 const userInfo = new UserInfo(".profile__name", ".profile__about-me", ".profile__avatar-image");
 
 // overlay profile description
-const handleProfileSubmit = (fieldValues, finalAction) => {
-  api.updateProfile(fieldValues[0], fieldValues[1])
-    .then((profile) => {
-      userInfo.setUserInfo(profile.name, profile.about);
+const handleProfileSubmit = ([name, about], finalAction) => {
+  api.updateProfile(name, about)
+    .then((updatedProfile) => {
+      userInfo.setUserInfo(updatedProfile.name, updatedProfile.about);
     }).catch((err) => {
     console.log(err);
   }).finally(finalAction);
@@ -60,10 +60,10 @@ const profileForm = profileOverlayContainer.querySelector(".form");
 new FormValidator(profileForm, validationSettings).enableValidation();
 
 // overlay profile avatar
-const handleProfileAvatarSubmit = (fieldValues, finalAction) => {
-  api.updateProfilePicture(fieldValues[0])
-    .then((profile) => {
-      userInfo.setAvatar(profile.avatar);
+const handleProfileAvatarSubmit = ([link], finalAction) => {
+  api.updateProfilePicture(link)
+    .then((updatedProfile) => {
+      userInfo.setAvatar(updatedProfile.avatar);
     }).catch((err) => {
     console.log(err);
   }).finally(finalAction);
@@ -75,10 +75,10 @@ const profileAvatarContainer = document.querySelector(".overlay__container_avata
 const profileAvatarForm = profileAvatarContainer.querySelector(".form");
 new FormValidator(profileAvatarForm, validationSettings).enableValidation();
 
-const deleteCard = (fieldValues, finalAction) => {
-  api.deleteCard(fieldValues[0])
+const deleteCard = ([cardId], finalAction) => {
+  api.deleteCard(cardId)
     .then(() => {
-      cardList.removeItem(fieldValues[0])
+      cardList.removeItem(cardId)
     }).catch((err) => {
     console.log(err);
   }).finally(() => {
@@ -91,8 +91,8 @@ confirmationFormPopup.setEventListeners();
 
 const handleLike = (cardId, card) => {
   api.addLike(cardId).then((updatedCard) => {
-    const likedBy = updatedCard.likes.map((like) => like._id);
-    card.addLike(likedBy);
+    const likedByList = updatedCard.likes.map((like) => like._id);
+    card.addLike(likedByList);
   })
     .catch((err) => {
       console.log(err);
@@ -101,8 +101,8 @@ const handleLike = (cardId, card) => {
 
 const handleDislike = (cardId, card) => {
   api.deleteLike(cardId).then((updatedCard) => {
-    const likedBy = updatedCard.likes.map((like) => like._id);
-    card.removeLike(likedBy);
+    const likedByList = updatedCard.likes.map((like) => like._id);
+    card.removeLike(likedByList);
   })
     .catch((err) => {
       console.log(err);
@@ -110,22 +110,22 @@ const handleDislike = (cardId, card) => {
 }
 
 // overlay place elements
-const addCard = (cardId, title, link, likedBy) => {
+const addCard = (cardId, title, link, likedByList) => {
   const handleCardClick = (imageTitle, imageLink) => {
     imagePopup.open(imageTitle, imageLink);
   };
   const handleRemoveCard = (card) => {
     confirmationFormPopup.open([card]);
   }
-  const newCard = new Card(cardId, userInfo.userId, title, link, likedBy, "#element__template", handleCardClick, handleRemoveCard, handleLike, handleDislike).generateCard();
+  const newCard = new Card(cardId, userInfo.userId, title, link, likedByList, "#element__template", handleCardClick, handleRemoveCard, handleLike, handleDislike).generateCard();
   cardList.setItem(cardId, newCard);
 };
 
-const handlePlaceSubmit = (fieldValues, finalAction) => {
-  api.addCard(fieldValues[0], fieldValues[1])
+const handlePlaceSubmit = ([name, link], finalAction) => {
+  api.addCard(name, link)
     .then((card) => {
-      const likedBy = card.likes.map((like) => like._id);
-      addCard(card._id, card.name, card.link, likedBy);
+      const likedByList = card.likes.map((like) => like._id);
+      addCard(card._id, card.name, card.link, likedByList);
     }).catch((err) => {
     console.log(err);
   }).finally(finalAction);
@@ -154,16 +154,14 @@ profileAvatarButton.addEventListener("click", () => {
 // load profile and intial cards in parallel to increase speed
 // but also assuring that we have the profile id when we create the cards
 Promise.all([api.getProfile(), api.getInitialCards()])
-  .then((results) => {
-    const profile = results[0];
-    const cards = results[1];
-    userInfo.setUserInfo(profile.name, profile.about);
-    userInfo.setAvatar(profile.avatar);
-    userInfo.setUserId(profile._id);
+  .then(([currentProfile, cards]) => {
+    userInfo.setUserInfo(currentProfile.name, currentProfile.about);
+    userInfo.setAvatar(currentProfile.avatar);
+    userInfo.setUserId(currentProfile._id);
 
     cards.forEach((card) => {
-      const likedBy = card.likes.map((like) => like._id);
-      addCard(card._id, card.name, card.link, likedBy);
+      const likedByList = card.likes.map((like) => like._id);
+      addCard(card._id, card.name, card.link, likedByList);
     });
   }
 ).catch((err) => {

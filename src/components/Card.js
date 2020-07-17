@@ -1,5 +1,5 @@
 export default class Card {
-  constructor(cardId, profileId, imageTitle, imageLink, likedBy, cardSelector,
+  constructor(cardId, profileId, imageTitle, imageLink, likedByList, cardSelector,
               handleCardClick, handleRemoveCard, handleLike, handleDislike) {
     this._cardId = cardId;
     this._profileId = profileId;
@@ -8,7 +8,7 @@ export default class Card {
     this._cardSelector = cardSelector;
     this._handleCardClick = handleCardClick;
     this._handleRemoveCard = handleRemoveCard;
-    this._likedBy = likedBy;
+    this._likedByList = likedByList;
     this._handleLike = handleLike;
     this._handleDislike = handleDislike;
     this._element = this._getTemplate();
@@ -53,24 +53,20 @@ export default class Card {
     });
   }
 
-  addLike(likedBy) {
-    this._likedBy = likedBy;
+  addLike(likedByList) {
+    this._likedByList = likedByList;
     const elementLikeCount = this._element.querySelector(".element__like-count");
     const elementLikeButton = this._element.querySelector(".element__like-button");
-    elementLikeCount.textContent = this._likedBy.length;
+    elementLikeCount.textContent = this._likedByList.length;
     elementLikeButton.classList.add("element__like_liked");
   }
 
-  removeLike(likedBy) {
-    this._likedBy = likedBy;
+  removeLike(likedByList) {
+    this._likedByList = likedByList;
     const elementLikeCount = this._element.querySelector(".element__like-count");
     const elementLikeButton = this._element.querySelector(".element__like-button");
-    elementLikeCount.textContent = this._likedBy.length;
+    elementLikeCount.textContent = this._likedByList.length;
     elementLikeButton.classList.remove("element__like_liked");
-  }
-
-  removeCard() {
-    this._element.remove();
   }
 
   generateCard() {
@@ -83,11 +79,11 @@ export default class Card {
     const elementLikeButton = this._element.querySelector(".element__like-button");
     this._element.style.backgroundImage = `url('${this._imageLink}')`;
     elementTitle.textContent = this._imageTitle;
-    elementLikeCount.textContent = this._likedBy.length;
+    elementLikeCount.textContent = this._likedByList.length;
 
     // check if the profile owner liked the card before
     // and adjust the like button accordingly
-    if (this._likedBy.includes(this._profileId)) {
+    if (this._likedByList.includes(this._profileId)) {
       elementLikeButton.classList.add("element__like_liked");
     }
 
