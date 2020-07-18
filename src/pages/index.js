@@ -110,22 +110,23 @@ const handleDislike = (cardId, card) => {
 }
 
 // overlay place elements
-const addCard = (cardId, title, link, likedByList) => {
+const addCard = (cardId, title, link, likedByList, ownerId) => {
   const handleCardClick = (imageTitle, imageLink) => {
     imagePopup.open(imageTitle, imageLink);
   };
   const handleRemoveCard = (card) => {
     confirmationFormPopup.open([card]);
   }
-  const newCard = new Card(cardId, userInfo.userId, title, link, likedByList, "#element__template", handleCardClick, handleRemoveCard, handleLike, handleDislike).generateCard();
-  cardList.setItem(cardId, newCard);
+  const newCard = new Card(cardId, userInfo.userId, ownerId, title, link, likedByList, "#element__template", handleCardClick, handleRemoveCard, handleLike, handleDislike).generateCard();
+  cardList.setItem(newCard);
 };
 
 const handlePlaceSubmit = ([name, link], finalAction) => {
   api.addCard(name, link)
     .then((card) => {
       const likedByList = card.likes.map((like) => like._id);
-      addCard(card._id, card.name, card.link, likedByList);
+      const ownerId = card.owner._id;
+      addCard(card._id, card.name, card.link, likedByList, ownerId);
     }).catch((err) => {
     console.log(err);
   }).finally(finalAction);
@@ -161,7 +162,8 @@ Promise.all([api.getProfile(), api.getInitialCards()])
 
     cards.forEach((card) => {
       const likedByList = card.likes.map((like) => like._id);
-      addCard(card._id, card.name, card.link, likedByList);
+      const ownerId = card.owner._id;
+      addCard(card._id, card.name, card.link, likedByList, ownerId);
     });
   }
 ).catch((err) => {
