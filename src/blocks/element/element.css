@@ -4,18 +4,7 @@
 @import url("__like-button/element__like-button.css");
 @import url("__like-count/element__like-count.css");
 @import url("__remove/element__remove.css");
+@import url("__remove/_hide/element__remove_hide.css");
+@import url("__link/element__link.css");
 
-.element {
-  width: 100%;
-  height: 361px;
-  background-repeat: no-repeat;
-  background-size: 100% 282px;
-  background-position: 0 0;
-  background-color: #FFFFFF;
-  border-radius: 10px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  margin: 0;
-  text-decoration: none;
-}
+

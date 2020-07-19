@@ -1,8 +1,9 @@
 export default class Card {
-  constructor(cardId, profileId, imageTitle, imageLink, likedByList, cardSelector,
+  constructor(cardId, profileId, ownerId, imageTitle, imageLink, likedByList, cardSelector,
               handleCardClick, handleRemoveCard, handleLike, handleDislike) {
     this._cardId = cardId;
     this._profileId = profileId;
+    this._ownerId = ownerId;
     this._imageTitle = imageTitle;
     this._imageLink = imageLink;
     this._cardSelector = cardSelector;
@@ -75,16 +76,23 @@ export default class Card {
     this._setLikeButtonEventListener();
 
     const elementTitle = this._element.querySelector(".element__title");
+    const elementLink = this._element.querySelector(".element__link");
+    const elementRemoveButton = this._element.querySelector(".element__remove");
     const elementLikeCount = this._element.querySelector(".element__like-count");
     const elementLikeButton = this._element.querySelector(".element__like-button");
-    this._element.style.backgroundImage = `url('${this._imageLink}')`;
+    elementLink.style.backgroundImage = `url('${this._imageLink}')`;
     elementTitle.textContent = this._imageTitle;
     elementLikeCount.textContent = this._likedByList.length;
+    this._element.dataset.id= this._cardId;
 
     // check if the profile owner liked the card before
     // and adjust the like button accordingly
     if (this._likedByList.includes(this._profileId)) {
       elementLikeButton.classList.add("element__like_liked");
+    }
+
+    if (this._profileId !== this._ownerId) {
+      elementRemoveButton.classList.add("element__remove_hide");
     }
 
     return this._element;
