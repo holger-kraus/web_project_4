@@ -20,7 +20,9 @@
 .element__like-button{border:0;width:21px;height:19px;background:url(49570bcb1d637fdb38e5d51e248ddff6.svg) no-repeat 50%;align-self:center}.element__like-button:hover{opacity:.6;cursor:pointer}
 .element__like-count{color:#000;padding:3px 0 0;font-size:13px;line-height:16px;text-align:center}
 .element__remove{width:18px;height:20px;background:url(3ff31d6834df56cbdfad913c409bdbb6.png);border:none;margin-top:18px;margin-right:15px;align-self:flex-end}.element__remove:hover{opacity:.6;cursor:pointer}
-.element{width:100%;height:361px;background-repeat:no-repeat;background-size:100% 282px;background-position:0 0;background-color:#fff;border-radius:10px;display:flex;flex-direction:column;justify-content:space-between;margin:0;text-decoration:none}
+.element__remove_hide{visibility:hidden}
+.element__link{display:flex;flex-direction:column;justify-content:space-between;margin:0;text-decoration:none;width:100%;height:361px;background-repeat:no-repeat;background-size:100% 282px;background-position:0 0;background-color:#fff;border-radius:10px}
+
 .element__like_liked{background:url(75438e944a43e4c0b404a3fd95e002f1.svg) no-repeat 50%}
 .footer__copyright{font-style:normal;font-weight:400;font-size:18px;line-height:22px;text-align:left;color:#545454}@media (max-width:425px){.footer__copyright{font-size:14px;line-height:17px}}
 .footer{padding:0;margin:46px auto 0;max-width:882px}@media (max-width:425px){.footer{margin:28px 19px 0}}
