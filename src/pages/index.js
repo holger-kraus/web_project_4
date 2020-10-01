@@ -68,7 +68,7 @@ const handleProfileAvatarSubmit = ([link], finalAction) => {
     console.log(err);
   }).finally(finalAction);
 };
-const profileAvatarFormPopup = new PopupWithForm(".overlay_avatarpic ", "Saving...", handleProfileAvatarSubmit);
+const profileAvatarFormPopup = new PopupWithForm(".overlay_avatarpic", "Saving...", handleProfileAvatarSubmit);
 profileAvatarFormPopup.setEventListeners();
 
 const profileAvatarContainer = document.querySelector(".overlay__container_avatarpic");
@@ -156,17 +156,17 @@ profileAvatarButton.addEventListener("click", () => {
 // but also assuring that we have the profile id when we create the cards
 Promise.all([api.getProfile(), api.getInitialCards()])
   .then(([currentProfile, cards]) => {
-    userInfo.setUserInfo(currentProfile.name, currentProfile.about);
-    userInfo.setAvatar(currentProfile.avatar);
-    userInfo.setUserId(currentProfile._id);
+      userInfo.setUserInfo(currentProfile.name, currentProfile.about);
+      userInfo.setAvatar(currentProfile.avatar);
+      userInfo.setUserId(currentProfile._id);
 
-    cards.forEach((card) => {
-      const likedByList = card.likes.map((like) => like._id);
-      const ownerId = card.owner._id;
-      addCard(card._id, card.name, card.link, likedByList, ownerId);
-    });
-  }
-).catch((err) => {
+      cards.forEach((card) => {
+        const likedByList = card.likes.map((like) => like._id);
+        const ownerId = card.owner._id;
+        addCard(card._id, card.name, card.link, likedByList, ownerId);
+      });
+    }
+  ).catch((err) => {
   console.log(err);
 });
 
